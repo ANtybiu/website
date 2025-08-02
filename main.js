@@ -4,6 +4,9 @@ const scroll = new LocomotiveScroll({
   el: document.querySelector('[data-scroll-container]'),
   smooth: true,
   smoothMobile: true,
+  tablet:{
+    breakpoint:0,
+  },
   multiplier: 1, // You can adjust scroll speed here
 });
 
