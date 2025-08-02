@@ -3,9 +3,12 @@ import LocomotiveScroll from 'https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1
 const scroll = new LocomotiveScroll({
   el: document.querySelector('[data-scroll-container]'),
   smooth: true,
-  smoothMobile: true,
   tablet:{
     breakpoint:0,
+  },
+  smoothMobile: true,      // ✅ must add this
+  smartphone: {
+    smooth: true
   },
   multiplier: 1, // You can adjust scroll speed here
 });
