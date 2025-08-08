@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Teecare Dental Clinic — One Page</title>
+
+  <!-- Montserrat -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- Locomotive Scroll CSS (optional, graceful fallback if blocked) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css" />
+
+  <style>
+    :root{
+      --bg:#fbfdff;
+      --card:#ffffff;
+      --muted:#6b7280;
+      --accent:#0ea5a4;
+      --blue:#0f172a;
+    }
+    html,body{height:100%;margin:0;font-family:"Montserrat",system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;}
+    body{background:linear-gradient(180deg,var(--bg),#f1f5f9);color:var(--blue);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:1100px;margin:0 auto;padding:28px;}
+
+    /* Header */
+    header { position:sticky; top:0; z-index:60; background:rgba(255,255,255,0.85); backdrop-filter: blur(6px); border-bottom:1px solid rgba(15,23,42,0.04); }
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:16px; max-width:1100px;margin:0 auto;padding:12px 20px;}
+    .brand{display:flex;align-items:center;gap:12px;}
+    .logo{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,#06b6d4,#06a6d4);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:18px;box-shadow:0 6px 18px rgba(6,182,212,0.14);transform:translateZ(0);}
+    .title{font-weight:700;font-size:16px;}
+    .subtitle{font-size:12px;color:var(--muted);}
+
+    .nav-right{display:flex;align-items:center;gap:12px;}
+    .nav-links{display:flex;gap:12px;align-items:center;}
+    .nav-links button{background:transparent;border:0;padding:8px 10px;border-radius:8px;cursor:pointer;font-weight:500;color:var(--muted);}
+    .nav-links button:hover{background:#f1f5f9;color:var(--blue);transform:translateY(-2px);}
+
+    /* Branch icon buttons */
+    .icon-btn{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:10px;border:0;background:transparent;cursor:pointer;transition:all .18s ease;}
+    .icon-btn:hover{transform:translateY(-3px) rotate(-2deg);box-shadow:0 8px 24px rgba(15,23,42,0.06);}
+    .icon-active{background:rgba(6,182,212,0.08);box-shadow:inset 0 0 0 1px rgba(6,182,212,0.08);}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;padding:40px 0;}
+    .hero-left h1{font-size:36px;margin:0 0 12px 0;}
+    .hero-left p{color:var(--muted);margin:0 0 18px 0;}
+    .cta{display:flex;gap:12px;margin-top:12px;}
+    .btn{padding:10px 16px;border-radius:10px;border:0;cursor:pointer;font-weight:600;}
+    .btn-primary{background:var(--accent);color:white;box-shadow:0 6px 18px rgba(6,182,212,0.14);}
+    .btn-outline{background:transparent;border:1px solid rgba(15,23,42,0.06);color:var(--blue);}
+
+    .hero-right img{width:100%;border-radius:14px;box-shadow:0 18px 50px rgba(2,6,23,0.08);transform:translateZ(0);transition:transform .4s ease;}
+    .hero-right img:hover{transform:translateY(-6px) rotate(-1deg) scale(1.02);}
+
+    /* Sections */
+    section{padding:48px 0;}
+    h2{font-size:26px;margin:0 0 10px 0;}
+    .muted{color:var(--muted);font-size:14px;}
+
+    /* Branch cards */
+    .branches-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;margin-top:18px;}
+    .branch-card{background:var(--card);padding:20px;border-radius:14px;box-shadow:0 12px 30px rgba(2,6,23,0.04);transition:transform .25s ease, box-shadow .25s ease;transform-style:preserve-3d;}
+    .branch-card:hover{transform:translateY(-8px) rotateX(1deg);box-shadow:0 22px 48px rgba(2,6,23,0.08);}
+    .branch-header{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;text-align:center;padding:10px;}
+    .branch-title{font-weight:800;font-size:20px;}
+    .branch-meta{color:var(--muted);font-size:13px;}
+    .counter{font-weight:900;font-size:48px;color:var(--accent);margin-top:18px;letter-spacing:0.6px;}
+    .counter-sub{font-weight:600;color:var(--blue);margin-top:6px;}
+
+    .doctors-list{margin-top:18px;display:flex;flex-direction:column;gap:8px;}
+    .doctor{padding:10px;border-radius:10px;background:#fbfdff;border:1px solid rgba(15,23,42,0.03);}
+
+    /* Services grid */
+    .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:12px;}
+    .service{padding:12px;border-radius:10px;background:#fff;border:1px solid rgba(15,23,42,0.04);transition:transform .18s ease;}
+    .service:hover{transform:translateY(-6px);box-shadow:0 12px 30px rgba(2,6,23,0.04);}
+
+    /* Footer */
+    footer{padding:36px 0;margin-top:26px;}
+    .footer-inner{display:flex;flex-direction:column;gap:12px;align-items:center;text-align:center;color:var(--muted);font-size:14px;}
+    .booking-cta{display:flex;gap:8px;align-items:center;margin-top:8px;}
+    .booking-cta .btn{padding:10px 14px;border-radius:10px;}
+
+    /* reveal animation helper */
+    [data-reveal]{opacity:0;transform:translateY(18px);transition:opacity .6s ease, transform .6s ease;}
+    [data-reveal].reveal-visible{opacity:1;transform:none;}
+
+    /* responsive */
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr; padding:24px 0;}
+      .hero-right{order:-1}
+      .nav-links{display:flex;gap:8px}
+    }
+  </style>
+</head>
+<body>
+  <!-- Locomotive scroll container -->
+  <div data-scroll-container id="scroll-container">
+    <header>
+      <div class="nav container" data-scroll-section>
+        <div class="brand">
+          <div class="logo">T</div>
+          <div>
+            <div class="title">Teecare Dental Clinic</div>
+            <div class="subtitle">Seri Kembangan • Puchong (Setiawalk)</div>
+          </div>
+        </div>
+
+        <div class="nav-right">
+          <nav class="nav-links" aria-label="Primary navigation">
+            <button class="nav-link" data-goto="#about">About</button>
+            <button class="nav-link" data-goto="#branches">Branches</button>
+            <button class="nav-link" data-goto="#services">Services</button>
+            <!-- Branch icons: click to go to the respective branch block -->
+            <button class="icon-btn" id="icon-home" title="Home" aria-label="Home" data-goto="#about">
+              <!-- home svg -->
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden><path d="M3 10.5L12 4l9 6.5" stroke="#0f172a" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+
+            <button class="icon-btn" id="icon-seri" title="Seri Kembangan" aria-label="Seri" data-goto="#branch-seri">
+              <!-- map marker svg -->
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden><path d="M12 21s8-5.5 8-11a8 8 0 10-16 0c0 5.5 8 11 8 11z" stroke="#0f172a" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+
+            <button class="icon-btn" id="icon-puchong" title="Puchong" aria-label="Puchong" data-goto="#branch-puchong">
+              <!-- tooth svg -->
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden><path d="M12 2c-3 0-5 2-6 4-1 2-1 6 1 9 2 3 3 5 4 7 1-2 2-4 4-7 2-3 2-7 1-9-1-2-3-4-6-4z" stroke="#0f172a" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- HERO / ABOUT -->
+      <section id="about" class="container" data-scroll-section>
+        <div class="hero">
+          <div class="hero-left">
+            <h1>Care you can trust — smiles we keep</h1>
+            <p class="muted">Teecare provides modern dental care across two branches. Whether you need a quick check-up or a restorative procedure, our experienced team is here for you.</p>
+            <div class="cta">
+              <button class="btn btn-primary" data-goto="#branches">View branches</button>
+              <button class="btn btn-outline" data-goto="#services">Our services</button>
+            </div>
+          </div>
+          <div class="hero-right" data-reveal>
+            <img src="https://images.unsplash.com/photo-1600267163579-1c9a8b2a6b8a?auto=format&fit=crop&w=800&q=60" alt="dental hero image">
+          </div>
+        </div>
+      </section>
+
+      <!-- BRANCHES -->
+      <section id="branches" class="container" data-scroll-section>
+        <h2>Our Branches</h2>
+        <p class="muted">Two branches serving different needs — one new and modern, one long-established and trusted by tens of thousands.</p>
+
+        <div class="branches-grid" style="margin-top:20px;">
+          <!-- Seri Kembangan card -->
+          <article id="branch-seri" class="branch-card" data-reveal>
+            <div class="branch-header">
+              <div class="branch-title">Teecare Dental Clinic — Seri Kembangan (NSK)</div>
+              <div class="branch-meta">Rating: <strong>4.8</strong> · Established: <strong>2024 (1 year)</strong></div>
+              <div class="counter" data-target="1000" id="counter-seri">0</div>
+              <div class="counter-sub">Patients Treated</div>
+            </div>
+
+            <div class="doctors-list">
+              <div class="doctor"><strong>Dr. Tee</strong> — Founder, 25 years experience (52 yrs old) — part-time in both clinics</div>
+            </div>
+
+            <div style="margin-top:14px;">
+              <h4 style="margin:0 0 6px 0;">Services</h4>
+              <div class="services-grid">
+                <div class="service">Consultation (Check-up)</div>
+                <div class="service">Scaling & Polishing</div>
+                <div class="service">Dental Filling</div>
+                <div class="service">Extraction</div>
+                <div class="service">Minor Oral Surgery</div>
+                <div class="service">Removable Denture</div>
+                <div class="service">Crown & Bridge</div>
+                <div class="service">Root Canal Treatment</div>
+                <div class="service">Tooth Whitening</div>
+                <div class="service">Night Guard</div>
+                <div class="service">Retainer</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Puchong card -->
+          <article id="branch-puchong" class="branch-card" data-reveal>
+            <div class="branch-header">
+              <div class="branch-title">Tee Dental Surgery — Puchong (Setiawalk)</div>
+              <div class="branch-meta">Rating: <strong>4.9</strong> · Established: <strong>~2010 (15 years)</strong></div>
+              <div class="counter" data-target="70000" id="counter-puchong">0</div>
+              <div class="counter-sub">Patients Treated</div>
+            </div>
+
+            <div class="doctors-list">
+              <div class="doctor"><strong>Dr. Tee</strong> — Founder, 25 years experience (52 yrs old) — part-time in both clinics</div>
+              <div class="doctor"><strong>Dr. Low</strong> — 10 years experience (30 yrs old) — primarily at Puchong</div>
+            </div>
+
+            <div style="margin-top:14px;">
+              <h4 style="margin:0 0 6px 0;">Services</h4>
+              <div class="services-grid">
+                <div class="service">Consultation (Check-up)</div>
+                <div class="service">Scaling & Polishing</div>
+                <div class="service">Dental Filling</div>
+                <div class="service">Extraction</div>
+                <div class="service">Minor Oral Surgery</div>
+                <div class="service">Removable Denture</div>
+                <div class="service">Crown & Bridge</div>
+                <div class="service">Root Canal Treatment</div>
+                <div class="service">Tooth Whitening</div>
+                <div class="service">Night Guard</div>
+                <div class="service">Retainer</div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- SERVICES (summary) -->
+      <section id="services" class="container" data-scroll-section>
+        <h2>Services (Summary)</h2>
+        <p class="muted">We provide the full spectrum of dental care for preventive, cosmetic and restorative needs.</p>
+
+        <div class="services-grid" style="margin-top:12px;">
+          <div class="service">Consultation (Check-up)</div>
+          <div class="service">Scaling & Polishing</div>
+          <div class="service">Dental Filling</div>
+          <div class="service">Extraction</div>
+          <div class="service">Minor Oral Surgery</div>
+          <div class="service">Removable Denture</div>
+          <div class="service">Crown & Bridge</div>
+          <div class="service">Root Canal Treatment</div>
+          <div class="service">Tooth Whitening</div>
+          <div class="service">Night Guard</div>
+          <div class="service">Retainer</div>
+        </div>
+      </section>
+
+      <footer data-scroll-section>
+        <div class="container footer-inner">
+          <div>
+            <strong>Booking & Contact</strong>
+            <div class="muted">Seri Kembangan: +60 3-0000-0000 • Puchong: +60 3-1111-1111</div>
+          </div>
+          <div class="booking-cta">
+            <button class="btn btn-primary" id="call-book">Call to Book</button>
+            <button class="btn btn-outline" id="book-online">Book Online</button>
+          </div>
+          <div class="muted">© <span id="year"></span> Teecare Dental Clinic — All rights reserved.</div>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <!-- Locomotive Scroll JS (optional) -->
+  <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
+
+  <script>
+    (function () {
+      // Utilities
+      function qs(sel, root=document) { return root.querySelector(sel) }
+      function qsa(sel, root=document) { return Array.from(root.querySelectorAll(sel)) }
+
+      // initialize year
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // Smooth scroll + Locomotive integration
+      let loco = null;
+      const scrollContainer = document.getElementById('scroll-container');
+
+      function initLocomotive () {
+        try {
+          if (window.LocomotiveScroll) {
+            loco = new window.LocomotiveScroll({
+              el: scrollContainer,
+              smooth: true,
+              smartphone: { smooth: true },
+              tablet: { smooth: true }
+            });
+            // refresh when images load (helps reveal)
+            window.addEventListener('load', () => loco.update());
+            return true;
+          }
+        } catch (e) {
+          console.warn('Locomotive init failed:', e && e.message);
+        }
+        // fallback: native smooth scrolling on html element
+        try { document.documentElement.style.scrollBehavior = 'smooth'; } catch(e){}
+        return false;
+      }
+
+      const locoAvailable = initLocomotive();
+
+      // navigation buttons -> scroll
+      function goToSelector(selector) {
+        const el = document.querySelector(selector);
+        if (!el) return;
+        if (loco) {
+          loco.scrollTo(el, { offset: -20, duration: 800, easing: [0.25,0.0,0.35,1.0] });
+        } else {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          // slight offset for sticky header
+          window.scrollBy(0, -16);
+        }
+      }
+
+      qsa('[data-goto]').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const selector = btn.getAttribute('data-goto');
+          goToSelector(selector);
+        });
+      });
+
+      // Reveal-on-scroll (works with locomotive or native)
+      function revealOnScroll() {
+        const elems = qsa('[data-reveal]');
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(ent => {
+            if (ent.isIntersecting) ent.target.classList.add('reveal-visible');
+          });
+        }, { threshold: 0.12 });
+
+        elems.forEach(el => observer.observe(el));
+
+        // For locomotive, refresh IO on its scroll updates
+        if (loco) {
+          loco.on('scroll', (obj) => {
+            // no-op: IntersectionObserver runs independently, but locomotive transforms may affect it
+            // If elements don't reveal, we can manually check bounding rects as a fallback (kept simple)
+          });
+        }
+      }
+      revealOnScroll();
+
+      // Counter animation: uses requestAnimationFrame and triggers when visible.
+      function setupCounters() {
+        const counters = [
+          { el: qs('#counter-seri'), target: parseInt(qs('#counter-seri').getAttribute('data-target'),10) || 1000 },
+          { el: qs('#counter-puchong'), target: parseInt(qs('#counter-puchong').getAttribute('data-target'),10) || 70000 }
+        ];
+
+        counters.forEach(item => {
+          if (!item.el) return;
+          let started = false;
+          let rafId = null;
+          let startTs = null;
+          const duration = item.target > 5000 ? 1600 : 900; // longer for big numbers
+
+          function step(ts) {
+            if (!startTs) startTs = ts;
+            const progress = Math.min((ts - startTs) / duration, 1);
+            const value = Math.floor(progress * item.target);
+            item.el.textContent = value.toLocaleString();
+            if (progress < 1) rafId = requestAnimationFrame(step);
+            else { item.el.textContent = item.target.toLocaleString(); cancelAnimationFrame(rafId); }
+          }
+
+          // IntersectionObserver to start counter when visible.
+          const obs = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting && !started) {
+                started = true;
+                // If locomotive is active, we need to use requestAnimationFrame as normal
+                rafId = requestAnimationFrame(step);
+              }
+            });
+          }, { threshold: 0.35 });
+
+          obs.observe(item.el);
+        });
+      }
+      setupCounters();
+
+      // Header icon active state when clicked / scroll-linked
+      const iconSeri = document.getElementById('icon-seri');
+      const iconPuch = document.getElementById('icon-puchong');
+      const iconHome = document.getElementById('icon-home');
+
+      function setActiveIcon(id) {
+        [iconHome,iconSeri,iconPuch].forEach(i => i.classList.remove('icon-active'));
+        const el = document.getElementById(id);
+        if (el) el.classList.add('icon-active');
+      }
+      // click handlers set active and goTo
+      iconSeri.addEventListener('click', ()=>{ setActiveIcon('icon-seri'); goToSelector('#branch-seri'); });
+      iconPuch.addEventListener('click', ()=>{ setActiveIcon('icon-puchong'); goToSelector('#branch-puchong'); });
+      iconHome.addEventListener('click', ()=>{ setActiveIcon('icon-home'); goToSelector('#about'); });
+
+      // Optionally highlight icons when the user scrolls near each branch (keeps UI in sync)
+      function highlightOnScrollFallback() {
+        // If locomotive provided, use its scroll event to compute; otherwise, use window scroll
+        function getOffsetTop(el) {
+          const r = el.getBoundingClientRect();
+          return r.top + (loco ? (window.scrollY || window.pageYOffset) : window.scrollY || window.pageYOffset);
+        }
+
+        const seriEl = document.getElementById('branch-seri');
+        const puchEl = document.getElementById('branch-puchong');
+
+        function check() {
+          const mid = (window.innerHeight || document.documentElement.clientHeight) / 2;
+          const seriRect = seriEl.getBoundingClientRect();
+          const puchRect = puchEl.getBoundingClientRect();
+          if (seriRect.top < mid && seriRect.bottom > mid) setActiveIcon('icon-seri');
+          else if (puchRect.top < mid && puchRect.bottom > mid) setActiveIcon('icon-puchong');
+          else setActiveIcon('icon-home');
+        }
+
+        // wire up: locomotive or window scroll
+        if (loco) {
+          loco.on('scroll', () => { check(); });
+        } else {
+          window.addEventListener('scroll', () => { check(); }, { passive:true });
+        }
+        // initial check
+        setTimeout(check, 300);
+      }
+      highlightOnScrollFallback();
+
+      // booking buttons
+      document.getElementById('call-book').addEventListener('click', () => {
+        alert('Call to book: Seri Kembangan +60 3-0000-0000 or Puchong +60 3-1111-1111');
+      });
+      document.getElementById('book-online').addEventListener('click', () => {
+        alert('Booking (demo): implement backend form to accept requests.');
+      });
+
+      // small accessibility: keyboard nav for nav buttons
+      qsa('.nav-link').forEach(btn => {
+        btn.addEventListener('keyup', (e) => { if (e.key === 'Enter') btn.click(); });
+      });
+
+      // If locomotive is not available, we already set native scrollBehavior. Also we ensure reveal class triggers on load for above-the-fold content
+      window.addEventListener('load', () => {
+        qsa('[data-reveal]').forEach(el => {
+          // if it's visible on load, reveal it
+          const rect = el.getBoundingClientRect();
+          if (rect.top < window.innerHeight * 0.9) el.classList.add('reveal-visible');
+        });
+      });
+
+    })();
+  </script>
+</body>
+</html>
